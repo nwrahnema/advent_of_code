@@ -1,5 +1,5 @@
 with open("input.txt") as file:
-    heightmap = [list(line) for line in file.read().splitlines()]
+    heightmap = file.read().splitlines()
     total = 0
     for i in range(len(heightmap)):
         for j in range(len(heightmap[i])):
