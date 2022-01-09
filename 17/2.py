@@ -1,6 +1,6 @@
 from collections import defaultdict
 from dataclasses import dataclass
-from itertools import chain
+from itertools import chain, product
 from math import copysign
 import re
 from typing import Iterable
@@ -70,8 +70,10 @@ def main():
     y_steps = get_y_steps(target_area)
     x_steps = get_x_steps(target_area, max(y_steps))
 
-    max_y_velocity = max(chain.from_iterable(y_steps[step] for step in x_steps.keys()))
-    print(max_y_velocity * (max_y_velocity + 1) // 2)
+    velocities = set(
+        chain.from_iterable(product(x_steps[key], y_steps[key]) for key in y_steps)
+    )
+    print(len(velocities))
 
 
 main()
