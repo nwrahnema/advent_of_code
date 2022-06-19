@@ -86,7 +86,6 @@ Snailfish = Number | Pair
 def parse_snailfish(input: Iterator[str]) -> Snailfish:
     char = next(input)
     if char == "[":
-
         left = parse_snailfish(input)
         assert next(input) == ","
         right = parse_snailfish(input)
