@@ -33,6 +33,5 @@ for i in range(len(lines)):
                 tmp = tmp[1:]
     converted.append(result)
 
-print(converted)
 filtered = [[c for c in line if c.isdigit()] for line in converted]
 print(sum(int(line[0] + line[-1]) for line in filtered))
