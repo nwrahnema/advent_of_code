@@ -1,5 +1,6 @@
 import re
 from enum import Enum
+from math import prod
 from pathlib import Path
 
 
@@ -25,13 +26,13 @@ with open(Path(__file__).with_name("input.txt")) as f:
             for reveal in game.split("; ")
         ]
 
-totals = {Color.RED: 12, Color.GREEN: 13, Color.BLUE: 14}
 
 result = 0
-for game_id, game in games.items():
-    if not any(
-        round[color] > total for round in game for color, total in totals.items()
-    ):
-        result += game_id
+for game in games.values():
+    maxes = {color: 0 for color in Color}
+    for round in game:
+        for color, count in round.items():
+            maxes[color] = max(maxes[color], count)
+    result += prod(maxes.values())
 
 print(result)
