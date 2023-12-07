@@ -10,10 +10,10 @@ with open(Path(__file__).with_name("input.txt")) as f:
         for line in f.read().splitlines()
     ]
 
-total = 0
-for card in res:
-    winning, mine = card
-    intersection = len(winning.intersection(mine))
-    total += 0 if intersection == 0 else 2 ** (intersection - 1)
+counts = [1 for _ in res]
+intersections = [len(winning.intersection(mine)) for winning, mine in res]
+for i in range(len(intersections)):
+    for j in range(i + 1, min(intersections[i] + i + 1, len(intersections))):
+        counts[j] += counts[i]
 
-print(total)
+print(sum(counts))
